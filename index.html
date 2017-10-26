@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="keywords" content="宠物社交第一站！！" />
+  <title>养宠无忧宠物社交平台</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <div class="container">
+    <header>新用户注册</header>
+
+    <form>
+      <div class="input-container">
+        <input type="text" placeholder="用户名" class="uname">
+      </div>
+      <div class="input-container">
+        <input type="text" placeholder="手机号码" maxlength="11" class="phone">
+      </div>
+      <div class="input-container">
+        <input type="text" placeholder="短信验证码" class="security-input">
+        <div class="security-code">发送验证码</div>
+      </div>
+      <div class="input-container">
+        <input type="password" placeholder="登录密码" class="password">
+      </div>
+      <div class="input-container">
+        <input type="password" placeholder="确认密码" class="confirm-password">
+      </div>
+      <div class="input-container">
+          <input type="text" placeholder="邀请码" class="invite_code">
+        </div>
+    </form>
+
+    <div class="submit-link">
+      <label>
+        <span>点击“注册”按钮，即表示您同意并遵守</span>
+        <a href="https://baidu"> 悠爱公社服务条款</a>
+      </label>
+    </div>
+
+    <div class="error-container">
+      <span class="error-info"></span>
+    </div>
+
+    <div class="register-container">
+      <a href="javascript:;" type="submit" class="submit-btn">注册</a>
+    </div>
+  </div>
+
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

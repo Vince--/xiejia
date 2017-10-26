@@ -1,0 +1,126 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: PingFang SC, "Helvetica Neue", Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Arial, sans-serif;  
+}
+ul {
+  padding: 0px;
+  margin: 0px;
+}
+ul li {
+  list-style: none;
+}
+.member-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  background: url('../images/pink_bg.png');
+}
+.member-container .bg {
+  width: 100%;
+  height: 100%;
+}
+.member-container .member-content {
+  width: 100%;
+  margin-top: 30px;
+}
+.member-container .member-content .welcome {
+  text-align: center;
+}
+.member-container .member-content .dog {
+  text-align: right;
+}
+.member-container .member-content .welcome img {
+  width: 56%;
+}
+.member-container .member-content .dog img {
+  width: 20%;
+  margin-right: 10%;
+}
+.box {
+  margin: 0px 4%;
+  background-color: #fff;
+  border: 1px solid #fff;
+  box-shadow: 0px 3px 3px #fc8d8a;
+  border-radius: 10px;
+  padding: 10px;
+  overflow: auto;
+}
+.box-left {
+  width: 68%;
+  float: left;
+  border-right: 1px dotted #fc8d8a;
+}
+.box-left .left-gold {
+  width: 20%;
+  float: left;
+}
+.box-left .left-gold img {
+  width: 100%;
+}
+.box-left .left-content {
+  margin-left: 20%;
+  padding: 5px;
+}
+.box-left .left-content .title {
+  color: #dd4355;
+  font-size: 18px;
+  font-weight: bold;
+}
+.box-left .left-content ul {
+  color: #666;
+  font-size: 13px;
+}
+.box-left .left-content ul li {
+  margin-top: 5px;
+}
+
+.box-right {
+  width: 32%;
+  margin-left: 70%;
+  text-align: center;
+}
+.box-right .price-box {
+  color: #fb3c3c;
+}
+.box-right .price-box .price-icon {
+  font-size: 18px;
+}
+.box-right .price-box .price-amount {
+  font-size: 30px;
+  font-weight: bold;
+}
+.box-right .before-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 14px;
+}
+.box-right .buy-btn {
+  background-color: #fb3c3c;
+  border: 1px solid #fb3c3c;
+  width: 76%;
+  padding: 3px 0px;
+  margin: 15px auto;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 15px;
+}
+.box-right .detail {
+  color: #fb3c3c;
+  font-size: 14px;
+}
+
+.gold-box {
+  margin-top: -10px;
+}
+.platinum-box {
+  margin-top: 30px;
+}
+.platinum-box .box-right {
+  margin-top: 10px;
+}
+.platinum-box .box-right .buy-btn {
+  margin: 25px auto;
+}

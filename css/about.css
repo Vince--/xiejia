@@ -1,0 +1,34 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: PingFang SC, "Helvetica Neue", Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Arial, sans-serif;  
+}
+.about-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  background: url('../images/bg.png');
+}
+.about-container .bg {
+  width: 100%;
+  height: 100%;
+}
+.about-container .title {
+  text-align: center;
+  margin-top: 35%;
+}
+.about-container .title img {
+  width: 60%;
+  height: auto;
+}
+.about-container .content{
+  margin-top: 10%;
+  text-indent:2em;
+  padding: 0px 20px 0px 30px;
+  letter-spacing: 2px;
+  line-height: 30px;
+  font-size: 16px;
+  color: rgba(40, 40, 40, 0.8);
+}

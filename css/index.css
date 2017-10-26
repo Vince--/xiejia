@@ -1,0 +1,99 @@
+body {
+  font-family: PingFang SC, "Helvetica Neue", Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Arial, sans-serif;  
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #333;
+  width: 100%;
+}
+input {
+  padding: 0px;
+  margin: 0px;
+}
+.container {
+  margin: 0 auto;
+}
+header {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background-color: #0096e0;
+  color: #fff;
+  font-size: 18px;
+}
+form {
+  width: 90%;
+  margin: 0 auto;
+}
+form .input-container {
+  width: 100%;
+  margin-top: 15px;
+  border: 1px solid #d6d6d6;
+  overflow: hidden;
+}
+form .input-container input {
+  width: 96%;
+  height: 40px;
+  outline: none;
+  color: #666;
+  padding-left: 4%;
+  border: none;
+  font-size: 14px;
+}
+form .input-container .security-input {
+  width: 66%;
+}
+form .input-container .security-code {
+  width: 30%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  float: right;
+  color: #0096e0;
+}
+.submit-link {
+  padding-top: 10px;
+  font-size: 12px;
+  margin: 0 auto;
+  width: 90%;
+}
+.submit-link a {
+  color: #0096e0;
+  text-decoration: none;
+}
+.submit-link a:hover {
+  color: #0096e0;
+  text-decoration: none;
+}
+.error-container {
+  margin: 0px auto;
+  margin-top: 10px;
+  width: 90%;
+  color: #FF0000;
+  height: 20px;
+}
+.error-container span {
+  display: none;
+}
+.register-container {
+  margin: 0px auto;
+  margin-top: 10px;
+  width: 90%;
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+  background: #0096e0;
+  border-radius: 2px;
+}
+.register-container a {
+  color: #fff;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+.register-container a:hover {
+  color: #fff;
+  text-decoration: none;
+}
