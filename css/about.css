@@ -11,10 +11,6 @@ body {
   right: 0px;
   background: url('../images/bg.png');
 }
-.about-container .bg {
-  width: 100%;
-  height: 100%;
-}
 .about-container .title {
   text-align: center;
   margin-top: 35%;

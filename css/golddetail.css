@@ -1,0 +1,111 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: PingFang SC, "Helvetica Neue", Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Arial, sans-serif;  
+}
+ul, ol {
+  margin: 0px;
+  padding: 0px;
+}
+ul li {
+  list-style: none;
+}
+.golddetail-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  background: url('../images/gold_bg.png') 0px 120px no-repeat;
+  background-size: 100% 100%;
+}
+.detail-header {
+  background: url(../images/gold_head_bg.png) no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  height: 200px;
+}
+.detail-header .detail-header-img {
+  width: 100px;
+  margin-top: 10px;
+}
+.detail-header .detail-header-title {
+  margin-top: 20px;
+}
+.detail-header .detail-header-title .title-font {
+  width: 40%;
+  margin: 0px auto;
+  padding: 5px 10px;
+  font-size: 26px;
+  font-weight: bold;
+  background-color: #f0a900;
+  color: #fff;
+  border: 1px solid #f0a900;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px #f39bc1;
+}
+
+.detail-content li {
+  padding: 0px 15px;
+}
+.detail-content .content-header {
+  text-align: center;
+  color: #f361ab;
+  font-size: 22px;
+  margin-top: 20px;
+}
+.detail-content .content-header img {
+  height: 18px;
+}
+.detail-content .content-title, .detail-content .title-attention {
+  font-size: 15px;
+  color: #333;
+  line-height: 25px;
+}
+.detail-content .content-title {
+  margin-top: 15px;
+}
+.detail-content .content-title-indent {
+  text-indent: 2em;
+}
+.detail-content .content-title-center {
+  text-align: center;
+}
+.detail-content .content-title .red-font, .detail-content .title-attention {
+  color: red;
+}
+.detail-content .content-info {
+  font-size: 13px;
+  color: #595858;
+  line-height: 25px;
+  text-indent: 2em;
+  margin-top: 25px;
+}
+.detail-content .content-box {
+  margin-top: 15px;
+  overflow: auto;
+}
+.detail-content .content-box img {
+  width: 35%;
+  float: left;
+}
+.detail-content .content-box .content-info {
+  margin-left: 35%;
+  margin-top: 25px;
+  text-indent: 0em;
+}
+.detail-content .prod5-info {
+  text-indent: 0em;
+  margin-top: 15px;
+}
+.detail-content .prod3-content-box .content-info {
+  margin-top: 0px;
+}
+.detail-content ol {
+  margin-bottom: 20px;
+}
+.detail-content ol li {
+  padding: 0px;
+  font-size: 13px;
+  color: #595858;
+  line-height: 25px;
+}

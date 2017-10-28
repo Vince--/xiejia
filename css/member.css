@@ -10,13 +10,21 @@ ul {
 ul li {
   list-style: none;
 }
+body a {
+  text-decoration: none;
+}
+body a:hover {
+  text-decoration: none;
+}
 .member-container {
   position: absolute;
   top: 0px;
   left: 0px;
   bottom: 0px;
   right: 0px;
-  background: url('../images/pink_bg.png');
+  background: url('../images/pink_bg.png')  no-repeat;
+  background-size: 100% 100%;
+  overflow: scroll;
 }
 .member-container .bg {
   width: 100%;
@@ -117,10 +125,20 @@ ul li {
 }
 .platinum-box {
   margin-top: 30px;
+  margin-bottom: 5px;
 }
 .platinum-box .box-right {
   margin-top: 10px;
 }
 .platinum-box .box-right .buy-btn {
   margin: 25px auto;
+}
+
+.goto-register-container {
+  text-align: right;
+  margin: 15px 20px 15px 0px;
+}
+.goto-register-container a {
+  color: #0295dc;
+  font-size: 14px;
 }
