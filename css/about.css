@@ -3,6 +3,12 @@ body {
   padding: 0px;
   font-family: PingFang SC, "Helvetica Neue", Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Arial, sans-serif;  
 }
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
 .about-container {
   position: absolute;
   top: 0px;
@@ -27,4 +33,12 @@ body {
   line-height: 30px;
   font-size: 16px;
   color: rgba(40, 40, 40, 0.8);
+}
+.goto-register-container {
+  text-align: right;
+  margin: 50px 25px 0px 0px;
+}
+.goto-register-container a {
+  font-size: 14px;
+  color: #de4356;
 }

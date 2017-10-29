@@ -10,6 +10,12 @@ ul, ol {
 ul li {
   list-style: none;
 }
+body a {
+  text-decoration: none;
+}
+body a:hover {
+  text-decoration: none;
+}
 .golddetail-container {
   position: absolute;
   top: 0px;
@@ -90,8 +96,14 @@ ul li {
 }
 .detail-content .content-box .content-info {
   margin-left: 35%;
-  margin-top: 25px;
+  margin-top: 0px;
   text-indent: 0em;
+}
+.detail-content .content-box .content-info .info-detail {
+  margin-top: 15px;
+}
+.detail-content .content-box .content-info .info-detail a {
+  color: #0295dc;
 }
 .detail-content .prod5-info {
   text-indent: 0em;
