@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/mine.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/weui.min.css">
+  <title>会员中心</title>
+</head>
+<body>
+  <div class="mine-container">
+    <header class="mine-header">
+        <!-- <header class="mine-header platinum-header"> -->
+      <div class="face"><img src="images/dog.png" alt=""></div>
+      <div class="user-info">
+        <div class="user">
+          <span class="phone">13212345678</span>
+          <span class="member">黄金会员</span>
+          <!-- <span class="member platinum-member">白金会员</span> -->
+        </div>
+        <div class="user-date">权益有效期：2015.8.9-2016.8.8</div>
+      </div>
+    </header>
+
+    <div class="panel myright-container">
+      <div class="panel-header myright-header">
+        <span>我的权益</span>
+        <a class="detail-link" href="golddetail.html">
+          <span>查看更多权益</span>  
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </a>
+      </div>
+      <div class="panel-body">
+        <div class="panel-li">
+          <i class="fa fa-bell panel-li-icon" aria-hidden="true"></i>
+          <div class="panel-li-right">
+            <span class="title">理赔报销预约</span>
+            <i class="fa fa-caret-down right-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="panel-li">
+          <div class="course-header">
+            <i class="fa fa-book panel-li-icon" aria-hidden="true"></i>
+            <div class="panel-li-right">
+              <span class="title">参与课程</span>
+              <i class="fa fa-caret-down right-icon" aria-hidden="true"></i>
+            </div>
+          </div>
+          <ul class="course">
+            <li>1、手机摄影基本功</li>
+            <li>2、构图的奥秘</li>
+            <li>3、手机摄影进阶</li>
+            <li>4、摄影的色彩</li>
+            <li>5、捕光捉影-如何利用光线</li>
+            <li>6、宠物主题的拍摄技巧</li>
+            <li>7、手机修片</li>
+          </ul>
+        </div>
+        <div class="panel-li">
+          <div class="shipping-address-header">
+            <i class="fa fa-map-marker panel-li-icon" aria-hidden="true"></i>
+            <div class="panel-li-right no-border">
+              <span class="title">收货地址</span>
+              <i class="fa fa-plus right-icon shipping-icon" aria-hidden="true"></i>
+              <!-- <i class="fa fa-pencil-square-o right-icon" aria-hidden="true"></i> -->
+            </div>
+          </div>
+
+
+          <div class="weui-cells weui-cells_form shipping-address">
+            <div class="weui-cell">
+              <div class="weui-cell__hd"><label class="weui-label">收货人</label></div>
+              <div class="weui-cell__bd">
+                <input class="weui-input shipping-name" type="text" placeholder="请输入收货人姓名">
+              </div>
+            </div>
+            <div class="weui-cell">
+              <div class="weui-cell__hd"><label class="weui-label">联系电话</label></div>
+              <div class="weui-cell__bd">
+                <input class="weui-input shipping-phone" type="text" placeholder="请输入收货人电话">
+              </div>
+            </div>
+            <div class="weui-cell region">
+              <div class="weui-cell__hd"><label class="weui-label">所在地区</label></div>
+              <div class="weui-cell__bd text-right">
+                <span class="region-content">请选择</span> 
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="weui-cell">
+              <!-- <div class="weui-cell__hd"><label class="weui-label">地址</label></div> -->
+              <div class="weui-cell__bd">
+                <textarea class="weui-textarea shipping-addr" placeholder="请填写详细地址" rows="2"></textarea>
+              </div>
+            </div>
+            <label class="weui-cell weui-check__label shipping-error-container" for="s13">
+              <div class="weui-cell__hd shipping-error"></div>
+            </label>
+            <div class="weui-cell">
+              <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary shipping-btn">保存</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel expand-container">
+      <div class="panel-header expand-header">
+        <span>推广及提现</span>
+        <a class="detail-link" href="golddetail.html">
+          <span>推广说明</span> 
+          <i class="fa fa-angle-right" aria-hidden="true"></i> 
+        </a>
+      </div>
+      <div class="panel-body">
+        <div class="panel-li">
+          <div class="panel-li-right">
+            <span class="title">我的推广二维码</span>
+            <i class="fa fa-angle-right right-icon" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="panel-li">
+          <div class="panel-li-right">
+            <span class="title">已赚取金额</span>
+            <div class="money">
+              <span>&yen;</span>
+              <span class="total">234（元）</span>
+            </div>
+          </div>
+        </div>
+        <div class="panel-li">
+          <div class="panel-li-right withdraw-header">
+            <span class="title">我要提现</span>
+            <i class="fa fa-caret-down right-icon" aria-hidden="true"></i>
+          </div>
+
+          <div class="weui-cells weui-cells_checkbox withdraw-content">
+            <label class="weui-cell weui-check__label" for="s11">
+              <div class="weui-cell__hd">
+                <input type="radio" class="weui-check withdraw-wx" name="radio" id="s11" checked="checked" value='1'>
+                <i class="weui-icon-checked"></i>
+              </div>
+              <div class="weui-cell__bd">
+                <p>微信</p>
+              </div>
+            </label>
+            <label class="weui-cell weui-check__label" for="s12">
+              <div class="weui-cell__hd">
+                <input type="radio" name="radio" class="weui-check" id="s12" value='2'>
+                <i class="weui-icon-checked"></i>
+              </div>
+              <div class="weui-cell__bd">
+                <span>支付宝</span>
+                <input class="weui-input withdraw-input withdraw-zfb" type="text" placeholder="请输入支付宝账号">
+              </div>
+            </label>
+            <label class="weui-cell weui-check__label" for="s13">
+              <div class="weui-cell__hd">
+                <input type="radio" name="radio" class="weui-check" id="s13" value='3'>
+                <i class="weui-icon-checked"></i>
+              </div>
+              <div class="weui-cell__bd">
+                <span>银行卡</span>
+                <input class="weui-input withdraw-input withdraw-yhk" type="number" placeholder="请输入银行卡账号">                
+              </div>
+            </label>
+            <label class="weui-cell weui-check__label">
+              <div class="weui-cell__bd withdraw-amount-container">
+                <input class="weui-input withdraw-input withdraw-amount" type="text" placeholder="提现金额">                
+                <span class="withdraw-all-amount">全部提现</span>
+              </div>
+            </label>
+            <label class="weui-cell weui-check__label withdraw-error-container">
+              <div class="weui-cell__hd withdraw-error"></div>
+            </label>
+            <div class="weui-cell">
+              <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary withdraw-btn">保存</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/weui.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/mine.js"></script>
+</body>
+</html>
