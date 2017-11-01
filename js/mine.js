@@ -112,6 +112,20 @@
       $('.shipping-error-container').css('display', 'none');
       $('.shipping-error').val();
     })
+    // 点击线下已取货
+    $('.offline-btn').on('click', function() {
+      $.ajax({
+        url: '',
+        type: 'POST',
+        data: '',
+        success: function(res) {
+          weui.alert('提交成功');
+        },
+        error: function(res) {
+          weui.alert('提交失败');
+        },
+      })
+    })
 
 
     // 点击提现
@@ -129,7 +143,13 @@
     // 选择提现方式
     $('.withdraw-content .weui-check').on('change', function() {
       payType = $(this).val();
+      $('.withdraw-input').val('');
       $('.withdraw-error-container').css('display', 'none');
+      if (payType == '1') {
+        $('.withdraw-user-container').hide();
+      } else {
+        $('.withdraw-user-container').show();
+      }
     })
     // 输入框
     $('.withdraw-content .withdraw-input').on('input', function() {
@@ -156,25 +176,37 @@
     $('.withdraw-btn').on('click', function() {
       // 支付宝
       if (payType && payType == '2') {
-        var val = $('.withdraw-zfb').val();
-        console.log("val ", val);
-        if (!val) {
+        var name = $('.withdraw-name').val();
+        var account = $('.withdraw-account').val();
+        if (!name) {
+          $('.withdraw-error-container').css('display', 'flex');
+          $('.withdraw-error').html('真实姓名不能为空');
+          return;
+        }
+        if (!account) {
           $('.withdraw-error-container').css('display', 'flex');
           $('.withdraw-error').html('支付宝账号不能为空');
           return;
         }
-        payAccount = val;
+        payName = name;
+        payAccount = account;
       }
       // 银行卡
       if (payType && payType == '3') {
-        var val = $('.withdraw-yhk').val();
-        console.log("val ", val);
-        if (!val) {
+        var name = $('.withdraw-name').val();
+        var account = $('.withdraw-account').val();
+        if (!name) {
+          $('.withdraw-error-container').css('display', 'flex');
+          $('.withdraw-error').html('真实姓名不能为空');
+          return;
+        }
+        if (!account) {
           $('.withdraw-error-container').css('display', 'flex');
           $('.withdraw-error').html('银行账号不能为空');
           return;
         }
-        payAccount = val;
+        payName = name;
+        payAccount = account;
       }
       // 提现金额
       var amount = $('.withdraw-amount').val();

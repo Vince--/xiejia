@@ -34,11 +34,13 @@
       </div>
       <div class="panel-body">
         <div class="panel-li">
-          <i class="fa fa-bell panel-li-icon" aria-hidden="true"></i>
-          <div class="panel-li-right">
-            <span class="title">理赔报销预约</span>
-            <i class="fa fa-caret-down right-icon" aria-hidden="true"></i>
-          </div>
+          <a href="reimbursement.html" class="reimbursement">
+            <i class="fa fa-bell panel-li-icon" aria-hidden="true"></i>
+            <div class="panel-li-right">
+              <span class="title">理赔报销预约</span>
+              <i class="fa fa-angle-right right-icon" aria-hidden="true"></i>
+            </div>
+          </a>
         </div>
         <div class="panel-li">
           <div class="course-header">
@@ -100,6 +102,7 @@
             </label>
             <div class="weui-cell">
               <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary shipping-btn">保存</a>
+              <a href="javascript:;" class="offline-btn">线下已取货</a>
             </div>
           </div>
         </div>
@@ -109,7 +112,7 @@
     <div class="panel expand-container">
       <div class="panel-header expand-header">
         <span>推广及提现</span>
-        <a class="detail-link" href="golddetail.html">
+        <a class="detail-link" href="expand.html">
           <span>推广说明</span> 
           <i class="fa fa-angle-right" aria-hidden="true"></i> 
         </a>
@@ -137,35 +140,49 @@
           </div>
 
           <div class="weui-cells weui-cells_checkbox withdraw-content">
-            <label class="weui-cell weui-check__label" for="s11">
-              <div class="weui-cell__hd">
-                <input type="radio" class="weui-check withdraw-wx" name="radio" id="s11" checked="checked" value='1'>
-                <i class="weui-icon-checked"></i>
-              </div>
-              <div class="weui-cell__bd">
-                <p>微信</p>
-              </div>
-            </label>
-            <label class="weui-cell weui-check__label" for="s12">
-              <div class="weui-cell__hd">
-                <input type="radio" name="radio" class="weui-check" id="s12" value='2'>
-                <i class="weui-icon-checked"></i>
-              </div>
-              <div class="weui-cell__bd">
-                <span>支付宝</span>
-                <input class="weui-input withdraw-input withdraw-zfb" type="text" placeholder="请输入支付宝账号">
-              </div>
-            </label>
-            <label class="weui-cell weui-check__label" for="s13">
-              <div class="weui-cell__hd">
-                <input type="radio" name="radio" class="weui-check" id="s13" value='3'>
-                <i class="weui-icon-checked"></i>
-              </div>
-              <div class="weui-cell__bd">
-                <span>银行卡</span>
-                <input class="weui-input withdraw-input withdraw-yhk" type="number" placeholder="请输入银行卡账号">                
-              </div>
-            </label>
+            <div class="withdraw-radio-container">
+              <label class="weui-cell weui-check__label withdraw-radio" for="s11">
+                <div class="weui-cell__hd">
+                  <input type="radio" class="weui-check withdraw-wx" name="radio" id="s11" checked="checked" value='1'>
+                  <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-cell__bd">
+                  <p>微信</p>
+                </div>
+              </label>
+              <label class="weui-cell weui-check__label withdraw-radio" for="s12">
+                <div class="weui-cell__hd">
+                  <input type="radio" name="radio" class="weui-check" id="s12" value='2'>
+                  <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-cell__bd">
+                  <span>支付宝</span>
+                  <!-- <input class="weui-input withdraw-input withdraw-zfb" type="text" placeholder="请输入支付宝账号"> -->
+                </div>
+              </label>
+              <label class="weui-cell weui-check__label withdraw-radio" for="s13">
+                <div class="weui-cell__hd">
+                  <input type="radio" name="radio" class="weui-check" id="s13" value='3'>
+                  <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-cell__bd">
+                  <span>银行卡</span>
+                  <!-- <input class="weui-input withdraw-input withdraw-yhk" type="number" placeholder="请输入银行卡账号">                 -->
+                </div>
+              </label>
+            </div>
+            <div class="withdraw-user-container">
+              <label class="weui-cell weui-check__label">
+                <div class="weui-cell__bd withdraw-user-box">
+                  <input class="weui-input withdraw-input withdraw-name" type="text" placeholder="请输入姓名">                
+                </div>
+              </label>
+              <label class="weui-cell weui-check__label">
+                <div class="weui-cell__bd withdraw-user-box">
+                  <input class="weui-input withdraw-input withdraw-account" type="text" placeholder="请输入账号">                
+                </div>
+              </label>
+            </div>
             <label class="weui-cell weui-check__label">
               <div class="weui-cell__bd withdraw-amount-container">
                 <input class="weui-input withdraw-input withdraw-amount" type="text" placeholder="提现金额">                
