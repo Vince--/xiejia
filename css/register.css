@@ -116,9 +116,13 @@ form .input-container .security-code {
 }
 .goto-login-container {
   text-align: center;
-  margin-top: 10px;
+  padding: 10px 0px;
 }
 .goto-login-container .login-link {
   color: #0096e0;
   font-size: 13px;
+}
+
+.mask-container {
+  display: none;
 }

@@ -11,16 +11,28 @@
 </head>
 <body>
   <div class="mine-container">
+    <div id="loadingToast">
+      <div class="weui-mask_transparent"></div>
+      <div class="weui-toast">
+        <i class="weui-loading weui-icon_toast"></i>
+        <p class="weui-toast__content">数据加载中</p>
+      </div>
+    </div>
+
     <header class="mine-header">
         <!-- <header class="mine-header platinum-header"> -->
       <div class="face"><img src="images/dog.png" alt=""></div>
       <div class="user-info">
         <div class="user">
-          <span class="phone">13212345678</span>
-          <span class="member">黄金会员</span>
+          <span class="username"></span>
+          <span class="member"></span>
           <!-- <span class="member platinum-member">白金会员</span> -->
         </div>
-        <div class="user-date">权益有效期：2015.8.9-2016.8.8</div>
+        <div class="user-date">
+          权益有效期：
+          <span class="level-start"></span>-
+          <span class="level-exprie"></span>
+        </div>
       </div>
     </header>
 

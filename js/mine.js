@@ -1,16 +1,106 @@
 (function($) {
   $(document).ready(function() {
+    var appkey = '';
     var courseFlag = false;
     var withdrawFlag = false;
     var payType = 1;
     var address = [];
     var total = 234;
     var base = {
-      phone: 13212345678,
-      member: 1,
-      date: '2015.8.9 - 2016.8.8',
-      face: 'images/dog.png'
+      username: '',
+      headIcon: '',
+      level: '',
+      level_start: '',
+      level_exprie: '',
     };
+
+    function init() {
+      getAppKey(function() { getUserInfo() })
+    }
+    //获取 APPKEY
+    function getAppKey(getAppKeyCallback) {
+      var cookie = getValue(document.cookie, 'token');
+      console.log('cookie ', cookie);
+      appkey = cookie ? md5('xiejia-admin_' + cookie) : '';    
+      getAppKeyCallback();
+    }
+    function getValue(str, c_name) {
+      if (str.length > 0) {
+        start = str.indexOf(c_name + "=")
+        if (start != -1) { 
+          start = start + c_name.length+1 
+          end = str.indexOf(";", start)
+          if (end == -1) end = str.length;
+          return str.substring(start,end)
+        } 
+      }
+      return ""
+    }
+    // 获取用户信息
+    function getUserInfo() {
+      $.ajax({
+        url: 'http://test.00981.net/xiejia/index.php?s=/Api/User/userinfo',
+        data: { appkey: appkey },
+        success: function(res) {
+          if (res.stateCode == 0 && res.data) {
+            $('#loadingToast').hide();
+            backfillUserInfo(res.data)
+          } else {
+            weui.alert(res.errorMsg);
+          }
+        },
+        error: function(res) {
+          weui.alert(res.errorMsg);
+        }
+      })
+    }
+    //数据回填
+    function backfillUserInfo(data) {
+      base.username = data.username;
+      base.headIcon = data.headIcon;
+      base.level = data.level;
+      base.level_start = data.level_start;
+      base.level_exprie = data.level_exprie;
+
+      $('.face img').attr('src', data.headIcon);
+      $('.username').html(data.username);
+      setLevel(data.level);
+      setTime(data);
+    }
+    // 设置时间
+    function setTime(data) {
+      if (data.level_start && data.level_start != 0) {
+        var time = new Date(data.level_start * 1000);
+        var date = formatDate(time);
+        $('.level-start').html(date)
+      }
+      if (data.level_exprie && data.level_exprie != 0) {
+        var time = new Date(data.level_exprie * 1000);        
+        var date = formatDate(time);
+        $('.level-exprie').html(date)
+      }
+    }
+    // 格式化时间戳
+    function formatDate(time)   {     
+      var year=time.getFullYear();     
+      var month=time.getMonth()+1;     
+      var date=time.getDate();     
+      var hour=time.getHours();     
+      var minute=time.getMinutes();     
+      var second=time.getSeconds();     
+      return year+"-"+month+"-"+date+" "+hour+":"+minute+":"+second;     
+    } 
+    // 获取会员等级
+    function setLevel(level) {
+      var levelName = '';
+      if (level == 1) levelName = '黄金会员';
+      if (level == 2) {
+        levelName = '白金会员';
+        $('.member').addClass('platinum-member');
+      }
+      if (!level) levelName = '普通会员';
+      $('.member').html(levelName);
+    }
 
     // 点击课程
     $('.course-header').on('click', function() {
@@ -243,5 +333,7 @@
         }
       })
     })
+
+    init();
   })
 })(jQuery)

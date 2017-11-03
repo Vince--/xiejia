@@ -1,7 +1,51 @@
 (function ($) {
+  var cookie = getValue(document.cookie, 'token');
+  console.log('cookie ', cookie);
+  var appkey = cookie ? md5('xiejia-admin_' + cookie) : '';
 
-  function onBridgeReady() {
-    console.log('WeixinJSBridge')
+  var search = location.search.slice(1);
+  var share_id = getValue(search, 'share_id');
+
+  function getValue(str, c_name) {
+    if (str.length > 0) {
+      start = str.indexOf(c_name + "=")
+      if (start != -1) { 
+        start = start + c_name.length+1 
+        end = str.indexOf(";", start)
+        if (end == -1) end = str.length;
+        return str.substring(start,end)
+      } 
+    }
+    return ""
+  }
+
+  function getOrder(isGold, getOrderCallback) {
+    var data = {
+      goodsid: isGold ? 1 : 2,
+      paytype: 1,
+      appkey: appkey,
+    };
+    $.ajax({
+      url: 'http://test.00981.net/xiejia/index.php?s=/Api/Order/pay',
+      type: 'POST',
+      data: data,
+      success: function(res) {
+        console.log('获取订单信息成功');
+        if (res.state_code == 0) {
+          getOrderCallback(res.data);
+        } else {
+          weui.alert(res.error_msg);
+        }
+      },
+      error: function(res) {
+        weui.alert(res.error_msg);
+        getOrderCallback(res.data);
+      }
+    })
+  }
+
+  function onBridgeReady(data) {
+    console.log('WeixinJSBridge', data)
     WeixinJSBridge.invoke(
       'getBrandWCPayRequest', {
         "appId": "wx2421b1c4370ec43b", //公众号名称，由商户传入     
@@ -19,17 +63,25 @@
   
   // 点击购买
   var onClickBuy = function (isGold) {
-    if (typeof WeixinJSBridge == "undefined") {
-      if (document.addEventListener) {
-        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-      } else if (document.attachEvent) {
-        document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    getOrder(isGold, function(data) {
+      if (typeof WeixinJSBridge == "undefined") {
+        if (document.addEventListener) {
+          document.addEventListener('WeixinJSBridgeReady', onBridgeReady(data), false);
+        } else if (document.attachEvent) {
+          document.attachEvent('WeixinJSBridgeReady', onBridgeReady(data));
+          document.attachEvent('onWeixinJSBridgeReady', onBridgeReady(data));
+        }
+      } else {
+        onBridgeReady(data);
       }
-    } else {
-      onBridgeReady();
-    }
+    })
+
   }
+
+  // 跳转注册
+  $('.goto-register-container a').on('click', function() {
+    location.href = share_id ? 'register.html' + '?share_id=' + share_id : 'register.html';
+  })
   // 按钮绑定事件
   $('.gold-box .buy-btn').on('click', function () { onClickBuy(true) });
   $('.platinum-box .buy-btn').on('click', function () { onClickBuy(false) });

@@ -6,15 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="keywords" content="宠物社交第一站！！" />
   <title>养宠无忧宠物社交平台</title>
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/register.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">  
+  <link rel="stylesheet" href="css/weui.min.css">
+  
 </head>
 <body>
   <div class="container">
-    <header>新用户注册</header>
+    <header>用户注册</header>
 
     <form>
       <div class="input-container">
-        <input type="text" placeholder="用户名" class="uname">
+        <input type="text" placeholder="用户名" class="username">
       </div>
       <div class="input-container">
         <input type="number" placeholder="手机号码" maxlength="11" class="phone">
@@ -23,21 +26,24 @@
         <input type="text" placeholder="短信验证码" class="security-input">
         <div class="security-code">发送验证码</div>
       </div>
+      <div class="input-container idcard-container">
+        <input type="text" placeholder="身份证" maxlength="18" class="idcard">
+      </div>
       <div class="input-container">
         <input type="password" placeholder="登录密码" class="password">
       </div>
       <div class="input-container">
         <input type="password" placeholder="确认密码" class="confirm-password">
       </div>
-      <div class="input-container">
-          <input type="text" placeholder="邀请码" class="invite_code">
-        </div>
+      <div class="input-container shareid-container">
+        <input type="text" placeholder="邀请码" class="invite_code">
+      </div>
     </form>
 
     <div class="submit-link">
       <label>
         <span>点击“注册”按钮，即表示您同意并遵守</span>
-        <a href="https://baidu"> 悠爱公社服务条款</a>
+        <a href="terms.html"> 悠爱公社服务条款</a>
       </label>
     </div>
 
@@ -52,9 +58,33 @@
     <div class="goto-login-container">
       <a class="login-link" href="login.html">已有账号，直接登录</a>
     </div>
+
+    <div class="mask-container">
+      <div class="weui-mask"></div>
+      <div class="weui-dialog">
+        <div class="weui-dialog__bd">
+          <div class="weui-cell weui-cell_vcode">
+            <div class="weui-cell__bd">
+              <input class="weui-input mask-code" type="text" placeholder="请输入验证码">
+            </div>
+            <div class="weui-cell__ft">
+              <img class="weui-vcode-img" src="">
+            </div>
+            <div class="weui-cell__ft refresh-container" style="margin-left: 5px;">
+              <i class="fa fa-refresh" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="weui-dialog__ft">
+          <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default mask-cancel">取消</a>
+          <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary mask-confirm">确定</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/index.js"></script>
+  <script src="js/weui.min.js"></script>  
+  <script src="js/register.js"></script>
 </body>
 </html>
