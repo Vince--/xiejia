@@ -48,32 +48,37 @@
         url: 'http://test.00981.net/xiejia/index.php?s=/Api/User/userinfo',
         data: { appkey: appkey },
         success: function(res) {
+          $('#loadingToast').hide();
           if (res.stateCode == 0 && res.data) {
-            $('#loadingToast').hide();
             backfillUserInfo(res.data)
           } else {
             weui.alert(res.errorMsg);
           }
         },
         error: function(res) {
+          $('#loadingToast').hide();
           weui.alert(res.errorMsg);
         }
       })
     }
     //数据回填
     function backfillUserInfo(data) {
-      base.username = data.username;
-      base.headIcon = data.headIcon;
-      base.level = data.level;
-      base.level_start = data.level_start;
-      base.level_exprie = data.level_exprie;
       total = data.amount;
-
+      
       $('.face img').attr('src', data.headIcon);
       $('.username').html(data.username);
       $('.total').html(data.amount + '（元）')
       setLevel(data.level);
       setTime(data);
+      setMyright(data.level);
+    }
+    // 设置我的权益
+    function setMyright(level) {
+      if (level == 1) {
+        $('.myright-container .detail-link').show().attr('href', 'golddetail.html');
+      } else if (level == 2) {
+        $('.myright-container .detail-link').show().attr('href', 'platinumdetail.html');
+      }
     }
     // 设置时间
     function setTime(data) {
@@ -237,6 +242,7 @@
         address: addr,
         region: JSON.stringify(address),
       };
+      addressId && (data.address_id = addressId)
 
       $.ajax({
         url: 'http://test.00981.net/xiejia/index.php?s=/Api/Account/addAddress',
@@ -326,6 +332,7 @@
     })
     // 点击提现 保存 按钮
     $('.withdraw-btn').on('click', function() {
+      var payName = '', payAccount = '';
       // 支付宝
       if (payType && payType == '2') {
         var name = $('.withdraw-name').val();
@@ -373,27 +380,57 @@
         return;
       }
 
-      var data = {};
-      data.payType = payType;
-      data.amount = amount;
-      if (payType && payType != '1') data.payAccount = payAccount;
+      var data = {
+        appkey: appkey,
+        type: payType,
+        money: amount,
+      };
+      if (payType && payType != '1') {
+        data.number = payAccount;
+        data.name = payName
+      }
 
       $.ajax({
-        url: 'http://test.00981.net/xiejia/index.php?s=/Api/',
+        url: 'http://test.00981.net/xiejia/index.php?s=/Api/Account/cash',
         type: 'POST',
         data: data,
         success: function(res) {
-          weui.alert('保存成功');
+          if (res.stateCode == 0) {
+            weui.alert('提现成功');
+          } else {
+            weui.alert(res.errorMsg);
+          }
         },
         error: function(res) {
-          console.log("res ", res);
-          weui.alert('保存失败');
+          weui.alert(res.errorMsg);
           $('.withdraw-amount').val('');
           total = total - amount;
           $('.total').html(total);
           $('.withdraw-content').hide();
         }
       })
+    })
+
+    // 跳转到二维码页面
+    $('.my-barcode-header').on('click', function() {
+      location.href = 'barcode.html'
+    })
+
+    //课程
+    $('.course li').on('click', function(e) {
+      var e = e || window.event;
+      e && e.stopPropagation();
+      var video = ['images/video.mp4', 'images/qy.mp4'];
+      var index = $(this).index();
+      var url = video[index];
+      console.log($('.video-container.mask-container video'))
+      $('.video-container.mask-container video').attr('src', url)
+      $('.video-container.mask-container').show();
+    })
+    //关闭课程
+    $('.video-container.mask-container .close').on('click', function() {
+      $('.video-container.mask-container video').trigger('pause').attr('src', '');
+      $('.video-container.mask-container').hide();
     })
 
     init();

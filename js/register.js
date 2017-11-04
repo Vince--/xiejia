@@ -25,13 +25,15 @@
   var errorArr = [];
   var securityDisabled = true;
   var totalCount = 60;   
-  var btnValid = true;
+  var btnValid = false;
   var appkey = '';
   var share_id = '';
+  var role_type = '';
 
   function init() {
     getAppkey();
     getShareId();
+    getRoleType();
   }
  
   function getAppkey() {
@@ -43,7 +45,13 @@
   function getShareId() {
     var search = location.search.slice(1);
     share_id = getValue(search, 'share_id');
-    if (share_id) $('.shareid-container').hide();
+    if (share_id) $('.shareid-container .invite_code').val(share_id).attr('disabled', 'disabled');
+  }
+
+  function getRoleType() {
+    var search = location.search.slice(1);
+    role_type = getValue(search, 'role_type');
+    if (role_type) $('.idcard-container').hide();
   }
 
   function getValue(str, c_name) {
@@ -79,26 +87,22 @@
     }
   }
 
-  function checkPhone(value) {
+  function checkPhone(value, checkPhoneCallback) {
     var newValue = value || $('.phone').val();
     return $.ajax({
       url: 'http://test.00981.net/xiejia/index.php?s=/Api/',
       data: { phone: newValue },
     })
     .done(function(res) {
-      new Promise(function(resolve, reject) {
-        if (res.stateCode == 0) {
-          setRrrorInfo('phone', 3);
-          securityDisabled = true;
-          btnValid = true;
-          resolve();
-        } else {
-          weui.alert(res.errorMsg, function() {
-            securityDisabled = false;
-            resolve();
-          });
-        }
-      })
+      if (res.stateCode == 0) {
+        btnValid = true;
+        securityDisabled = false;
+        checkPhoneCallback && checkPhoneCallback()
+      } else {
+        setRrrorInfo('phone', 3);
+        securityDisabled = true;
+        btnValid = false;
+      }
     })
     .fail(function(res) {
       weui.alert(res.errorMsg);
@@ -218,29 +222,27 @@
   
   function getSecurityCode() {
     btnValid = false;
-    checkPhone().then(
-      res => {
-        if (securityDisabled) return;
-        var value = $('.phone').val();
-        $.ajax({
-          url: 'http://test.00981.net/xiejia/index.php?s=/Api/User/randomCode',
-          data: { 
-            mobile: value,
-            type: 0 
-          }
-        })
-        .done(function(res) {
-          if (res.stateCode == 0) {
-            setCountDown()
-          } else {
-            weui.alert(res.errorMsg);
-          }
-        })
-        .fail(function(res) {
+    checkPhone('', function() {
+      if (securityDisabled) return;
+      var value = $('.phone').val();
+      $.ajax({
+        url: 'http://test.00981.net/xiejia/index.php?s=/Api/User/randomCode',
+        data: { 
+          mobile: value,
+          type: 0 
+        }
+      })
+      .done(function(res) {
+        if (res.stateCode == 0) {
+          setCountDown()
+        } else {
           weui.alert(res.errorMsg);
-        });
-      }
-    )
+        }
+      })
+      .fail(function(res) {
+        weui.alert(res.errorMsg);
+      });
+    })
   }
 
   function onClickMaskConfirm() {
@@ -288,12 +290,13 @@
 
   function formatParams() {
     var username = $('.username').val(),
-    phone = $('.phone').val(),
+    mobile = $('.phone').val(),
     code = $('.security-input').val(),
     password = $('.password').val(),
     role_type = 1,
     appkey = appkey,
-    share_id = share_id ? share_id : $('.invite_code').val();
+    share_id = share_id ? share_id : $('.invite_code').val(),
+    id_card = $('.idcard').val();
     var data = {
       username: username,
       phone: phone,
@@ -303,6 +306,7 @@
       appkey: appkey,
     };
     share_id && (data.share_id = share_id);
+    id_card && (data.id_card = id_card);
     return data;
   }
   
@@ -311,7 +315,7 @@
     usernameBlur()
     phoneBlur(true)
     securityBlur()
-    idcardBlur()
+    !role_type && idcardBlur()
     passwordBlur()
     confirmPasswordBlur()
     if (errorArr.length > 0) {

@@ -76,7 +76,7 @@
 
   // 跳转注册
   $('.goto-register-container a').on('click', function() {
-    location.href = share_id ? 'register.html' + '?share_id=' + share_id : 'register.html';
+    location.href = share_id ? 'register.html?role_type=1' + '?share_id=' + share_id : 'register.html?role_type=1';
   })
   // 按钮绑定事件
   $('.gold-box .buy-btn').on('click', function () { onClickBuy(true) });
