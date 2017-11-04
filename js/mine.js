@@ -5,7 +5,10 @@
     var withdrawFlag = false;
     var payType = 1;
     var address = [];
-    var total = 234;
+    var addressLists = [];
+    var addressDefaultValue = [];
+    var addressId = '';
+    var total = 0;
     var base = {
       username: '',
       headIcon: '',
@@ -15,15 +18,18 @@
     };
 
     function init() {
-      getAppKey(function() { getUserInfo() })
+      getAppKey(function() { 
+        getUserInfo() 
+        getAddressInfo()
+      })
     }
     //获取 APPKEY
     function getAppKey(getAppKeyCallback) {
       var cookie = getValue(document.cookie, 'token');
-      console.log('cookie ', cookie);
       appkey = cookie ? md5('xiejia-admin_' + cookie) : '';    
       getAppKeyCallback();
     }
+    //
     function getValue(str, c_name) {
       if (str.length > 0) {
         start = str.indexOf(c_name + "=")
@@ -61,9 +67,11 @@
       base.level = data.level;
       base.level_start = data.level_start;
       base.level_exprie = data.level_exprie;
+      total = data.amount;
 
       $('.face img').attr('src', data.headIcon);
       $('.username').html(data.username);
+      $('.total').html(data.amount + '（元）')
       setLevel(data.level);
       setTime(data);
     }
@@ -101,6 +109,47 @@
       if (!level) levelName = '普通会员';
       $('.member').html(levelName);
     }
+    // 查看收货地址列表
+    function getAddressInfo() {
+      $.ajax({
+        url: 'http://test.00981.net/xiejia/index.php?s=/Api/Account/getAddressInfo',
+        data: { appkey: appkey },
+        success: function(res) {
+          if (res.stateCode == 0) {
+            if (res.data && res.data.length > 0) {
+              addressLists = res.data;
+              backfillAddressInfo(res.data[0]);
+            }
+          } else {
+            weui.alert(res.errorMsg);
+          }
+        },
+        error: function(res) {
+          weui.alert(res.errorMsg);
+        }
+      })
+    }
+    // 回填收货地址
+    function backfillAddressInfo(data) {
+      addressId = data.id;
+      data.region = [
+        {label: "湖南省", value: "430000"},
+        {label: "张家界市", value: "430800"},
+        {label: "武陵源区", value: "430811"}
+      ];
+      $('.shipping-name').val(data.name);
+      $('.shipping-phone').val(data.mobile);
+      $('.shipping-addr').val(data.address);
+      address = data.region;
+      var html = '';
+      for(var i=0; i<data.region.length; i++) {
+        html += data.region[i].label;
+        addressDefaultValue.push(data.region[i].value)
+      }
+      $('.region-content').html(html);
+      $('.shipping-btn').html('编辑');
+      $('.shipping-icon').removeClass('fa-plus').addClass('fa-pencil-square-o')
+    }
 
     // 点击课程
     $('.course-header').on('click', function() {
@@ -118,9 +167,13 @@
       $('.shipping-address').slideToggle();
       $('.shipping-error-container').css('display', 'none');
       $('.shipping-error').val();
-      $('.shipping-address .weui-input, .shipping-address .weui-textarea').val('');
-      $('.region-content').html('请选择');
-      address = [];
+      if (addressLists.length > 0) {
+        backfillAddressInfo(addressLists[0]);
+      } else {
+        $('.shipping-address .weui-input, .shipping-address .weui-textarea').val('');
+        $('.region-content').html('请选择');
+        address = [];
+      }
     })
     // 级联picker
     $('.region').on('click', function() {
@@ -128,16 +181,15 @@
         depth: 3,
         className: 'custom-classname',
         container: 'body',
-        defaultValue: [],
+        defaultValue: addressDefaultValue,
         onConfirm: function (result) {
           var html = '';
           for(var i=0; i<result.length; i++) {
             html += result[i].label;
-            address.push(result[i].value);
+            address.push(result);
           }
           $('.region-content').html(html);
           var errorVal = $('.shipping-error').html();
-          console.log('errorVal ', errorVal)
           if (errorVal == '所在地区必填') {
             $('.shipping-error-container').css('display', 'none');
             $('.shipping-error').val();
@@ -174,26 +226,33 @@
         return;
       }
 
+      address.forEach(function(value, index) {
+        value.children && delete value.children
+      })
+
       var data = {
+        appkey: appkey,
         name: name,
-        phone: phone,
-        address: address,
-        addr: addr,
+        mobile: phone,
+        address: addr,
+        region: JSON.stringify(address),
       };
 
       $.ajax({
-        url: '',
-        type: 'POST',
+        url: 'http://test.00981.net/xiejia/index.php?s=/Api/Account/addAddress',
         data: data,
         success: function(res) {
-          weui.alert('保存成功');
+          if (res.stateCode == 0) {
+            weui.alert('保存成功');
+            $('.shipping-icon').removeClass('fa-plus').addClass('fa-pencil-square-o')
+            $('.shipping-btn').html('编辑');
+            $('.shipping-address').hide();
+          } else {
+            weui.alert(res.errorMsg);
+          }
         },
         error: function(res) {
-          console.log("res ", res);
-          weui.alert('保存失败');
-          $('.shipping-icon').removeClass('fa-plus').addClass('fa-pencil-square-o')
-          $('.shipping-btn').html('编辑');
-          $('.shipping-address').hide();
+          weui.alert(res.errorMsg);
         }
       })
     })
@@ -205,14 +264,17 @@
     // 点击线下已取货
     $('.offline-btn').on('click', function() {
       $.ajax({
-        url: '',
-        type: 'POST',
-        data: '',
+        url: 'http://test.00981.net/xiejia/index.php?s=/Api/Order/setDelivered',
+        data: { appkey: appkey },
         success: function(res) {
-          weui.alert('提交成功');
+          if (res.stateCode == 0) {
+            weui.alert('提交成功');
+          } else {
+            weui.alert(res.errorMsg);
+          }
         },
         error: function(res) {
-          weui.alert('提交失败');
+          weui.alert(res.errorMsg);
         },
       })
     })
@@ -317,7 +379,7 @@
       if (payType && payType != '1') data.payAccount = payAccount;
 
       $.ajax({
-        url: '',
+        url: 'http://test.00981.net/xiejia/index.php?s=/Api/',
         type: 'POST',
         data: data,
         success: function(res) {

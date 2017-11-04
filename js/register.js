@@ -87,20 +87,21 @@
     })
     .done(function(res) {
       new Promise(function(resolve, reject) {
-        if (res.state_code == 0) {
+        if (res.stateCode == 0) {
           setRrrorInfo('phone', 3);
           securityDisabled = true;
           btnValid = true;
           resolve();
         } else {
-          weui.alert(res.error_msg);
-          securityDisabled = false;
-          resolve();
+          weui.alert(res.errorMsg, function() {
+            securityDisabled = false;
+            resolve();
+          });
         }
       })
     })
     .fail(function(res) {
-      weui.alert(res.error_msg);
+      weui.alert(res.errorMsg);
       console.log( "checkPhone Request failed: " + res );
     });
   }
@@ -203,14 +204,14 @@
     $.ajax({
       url: 'http://test.00981.net/xiejia/index.php?s=/Api/',
       success: function(res) {
-        if (res.state_code == 0) {
+        if (res.stateCode == 0) {
           $('.weui-vcode-img').attr('src', '../images/bg.png');
         } else {
-          weui.alert(res.error_msg);
+          weui.alert(res.errorMsg);
         }
       },
       error: function(res) {
-        weui.alert(res.error_msg);
+        weui.alert(res.errorMsg);
       }
     })
   }
@@ -229,14 +230,14 @@
           }
         })
         .done(function(res) {
-          if (res.state_code == 0) {
+          if (res.stateCode == 0) {
             setCountDown()
           } else {
-            weui.alert(res.error_msg);
+            weui.alert(res.errorMsg);
           }
         })
         .fail(function(res) {
-          weui.alert(res.error_msg);
+          weui.alert(res.errorMsg);
         });
       }
     )
@@ -250,14 +251,14 @@
         code: code
       },
       success: function(res) {
-        if (res.state_code == 0) {
+        if (res.stateCode == 0) {
           getSecurityCode();
         } else {
-          weui.alert(res.error_msg);
+          weui.alert(res.errorMsg);
         }
       },
       error: function(res) {
-        weui.alert(res.error_msg);
+        weui.alert(res.errorMsg);
       }
     })
   }
@@ -274,14 +275,14 @@
       data: data
     })
     .done(function( res ) {
-      if (res.state_code == 0) {
+      if (res.stateCode == 0) {
         location.href="mine.html";
       } else {
-        weui.alert(res.error_msg);
+        weui.alert(res.errorMsg);
       }
     })
     .fail(function(res) {
-      weui.alert(res.error_msg);
+      weui.alert(res.errorMsg);
     });
   }
 

@@ -1,6 +1,5 @@
 (function ($) {
   var cookie = getValue(document.cookie, 'token');
-  console.log('cookie ', cookie);
   var appkey = cookie ? md5('xiejia-admin_' + cookie) : '';
 
   var search = location.search.slice(1);
@@ -30,22 +29,19 @@
       type: 'POST',
       data: data,
       success: function(res) {
-        console.log('获取订单信息成功');
-        if (res.state_code == 0) {
+        if (res.stateCode == 0) {
           getOrderCallback(res.data);
         } else {
-          weui.alert(res.error_msg);
+          weui.alert(res.errorMsg);
         }
       },
       error: function(res) {
-        weui.alert(res.error_msg);
-        getOrderCallback(res.data);
+        weui.alert(res.errorMsg);
       }
     })
   }
 
   function onBridgeReady(data) {
-    console.log('WeixinJSBridge', data)
     WeixinJSBridge.invoke(
       'getBrandWCPayRequest', {
         "appId": "wx2421b1c4370ec43b", //公众号名称，由商户传入     
